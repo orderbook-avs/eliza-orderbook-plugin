@@ -25,7 +25,7 @@ export const getLatestBlockHeightAction: Action = {
         try {
             const response = await service.getLastBlockHeight();
             elizaLogger.success(
-                `Successfully fetched APOD`
+                `Successfully fetched block height: ${response.height}`
             );
             if (callback) {
                 callback({
@@ -34,9 +34,9 @@ export const getLatestBlockHeightAction: Action = {
                 return true;
             }
         } catch (error:any) {
-            elizaLogger.error("Error in NASA plugin handler:", error);
+            elizaLogger.error("Error in orderbook plugin handler:", error);
             callback({
-                text: `Error fetching APOD: ${error.message}`,
+                text: `Error fetching latest block height: ${error.message}`,
                 content: { error: error.message },
             });
             return false;
