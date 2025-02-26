@@ -18,7 +18,8 @@ import {
     stringToUuid,
     validateCharacterConfig,
 } from "@elizaos/core";
-import { defaultCharacter } from "./defaultCharacter.ts";
+//import { defaultCharacter } from "./defaultCharacter.ts";
+import { cryptoCharacter as defaultCharacter } from "./orderbook.character";
 
 import { bootstrapPlugin } from "@elizaos/plugin-bootstrap";
 
@@ -589,6 +590,7 @@ export async function initializeClients(
                     elizaLogger.debug(
                         `Initializing client: ${client.name}`
                     );
+                    console.log(startedClient)
                     clients.push(startedClient);
                 }
             }
