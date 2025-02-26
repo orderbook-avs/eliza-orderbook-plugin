@@ -141,6 +141,9 @@ importers:
       '@elizaos/core':
         specifier: workspace:*
         version: link:../packages/core
+      '@elizaos/plugin-ai-orderbook':
+        specifier: workspace:*
+        version: link:../packages/plugin-ai-orderbook
       '@elizaos/plugin-bootstrap':
         specifier: workspace:*
         version: link:../packages/plugin-bootstrap
