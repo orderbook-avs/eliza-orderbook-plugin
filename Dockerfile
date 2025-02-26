@@ -17,6 +17,7 @@ RUN npm install -g pnpm@9.15.4 && \
     automake \
     libopus-dev \
     make \
+    gcc \
     g++ \
     build-essential \
     libcairo2-dev \
