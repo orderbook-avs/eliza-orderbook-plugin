@@ -4,6 +4,8 @@ node_modules
 # Docker container is for hosting ElizaOS, no need for frontend to be hosted
 client
 
+db.sqlite
+
 # Ignore logs and temporary files
 *.log
 *.tmp
