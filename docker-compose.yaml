@@ -3,6 +3,8 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+        platform: linux/amd64
+        image: vpalmerio/eliza-orderbook-plugin:testing  # Specify the image name and tag
         stdin_open: true
         tty: true
         volumes:
@@ -10,7 +12,13 @@ services:
             - eliza:/app/packages/client-twitter/src/tweetcache
             - eliza:/app/db.sqlite
         environment:
-            - OPENAI_API_KEY=
+            - OPENAI_API_KEY=gaia-key #can be anything, just needs to have a value to be parsed by Eliza
+            - LARGE_OPENAI_MODEL=Llama-3.2-3B-Instruct
+            - EMBEDDING_OPENAI_MODEL=Nomic-embed-text-v1.5
+            - USE_OPENAI_EMBEDDING=false
+            - UNICHAIN_RPC_URL=https://sepolia.unichain.org/
+            - GAIANET_EMBEDDING_MODEL=Nomic-embed-text-v1.5
+            - USE_GAIANET_EMBEDDING=true
             - REDPILL_API_KEY=
             - ELEVENLABS_XI_API_KEY=
             - ELEVENLABS_MODEL_ID=eleven_multilingual_v2

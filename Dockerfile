@@ -76,5 +76,18 @@ COPY --from=builder /app/characters ./characters
 # Expose necessary ports
 EXPOSE 3000 5173
 
+# Set up Gaianet through OpenAI env vars
+ENV OPENAI_API_KEY=gaia-NDFhNzdmODYtMjE2Yi00ODY2LWE4MTQtNWZlMjQ4YmJmMzYw-IjRfSc56QyK1Ko0B
+ENV SMALL_OPENAI_MODEL=Llama-3.2-3B-Instruct
+ENV MEDIUM_OPENAI_MODEL=Llama-3.2-3B-Instruct
+ENV LARGE_OPENAI_MODEL=Llama-3.2-3B-Instruct
+ENV EMBEDDING_OPENAI_MODEL=Nomic-embed-text-v1.5
+ENV USE_OPENAI_EMBEDDING=false
+ENV UNICHAIN_RPC_URL=https://sepolia.unichain.org/
+    
+# Gaianet Embed Configuration
+ENV GAIANET_EMBEDDING_MODEL=Nomic-embed-text-v1.5
+ENV USE_GAIANET_EMBEDDING=true
+
 # Command to start the application
 CMD ["sh", "-c", "pnpm start & pnpm start:client"]
