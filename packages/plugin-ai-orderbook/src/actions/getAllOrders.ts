@@ -2,6 +2,7 @@ import { Action, HandlerCallback, IAgentRuntime, Memory, State, elizaLogger, } f
 import { createOrderbookService } from "../services";
 import { validateOrderbookConfig } from "../environment";
 import { getAllOrdersExamples } from "../examples";
+import { Order } from "../types";
 
 export const getAllOrdersAction: Action = {
     name: "GET_ALL_ORDERS",
@@ -29,10 +30,10 @@ export const getAllOrdersAction: Action = {
                 `Successfully fetched all orders: ${response.orders}`
             );
             if (callback) {
-                const indexToName = ["Order ID", "Address", "Price", "Quantity", "Timestamp"]; // Example mapping
-                const prettyOrders = response.orders.map(order => 
-                    order.map((value, index) => `${indexToName[index]}: ${typeof value === 'bigint' ? value.toString() : value}`).join('\n')
-                ).join('\n\n');
+                const indexToName = ["User", "Price", "Amount", "Token Address", "Slippage", "Is a buy order (if false, a sell order)", "When order was placed (unix seconds)", "When order was matched (unix seconds)", "Is partially fulfilled", "Is fulfilled"]; // Example mapping
+                const prettyOrders = response.orders.map((order: Order) => 
+                    order.map((value: string | number | bigint, index: number) => `${indexToName[index]}: ${typeof value === 'bigint' ? value.toString() : value}`).join('\n')
+                ).join('\n---------------------------------------\n');
                 callback({
                     text: `Here are all of the orders that have occurred:\n\n${prettyOrders}`
                 });
