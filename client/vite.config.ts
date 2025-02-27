@@ -16,6 +16,9 @@ export default defineConfig(({ mode }) => {
                 threshold: 1024,
             }),
         ],
+        server: {
+            host: true,
+        },
         clearScreen: false,
         envDir,
         define: {
