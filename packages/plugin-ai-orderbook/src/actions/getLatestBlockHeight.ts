@@ -1,6 +1,7 @@
 import { Action, HandlerCallback, IAgentRuntime, Memory, State, elizaLogger, } from "@elizaos/core";
 import { createOrderbookService } from "../services";
 import { validateOrderbookConfig } from "../environment";
+import { getLatestBlockHeightExamples } from "../examples";
 
 export const getLatestBlockHeightAction: Action = {
     name: "GET_LATEST_BLOCK_HEIGHT",
@@ -10,7 +11,7 @@ export const getLatestBlockHeightAction: Action = {
         await validateOrderbookConfig(runtime);
         return true;
     },
-    examples: [],
+    examples: getLatestBlockHeightExamples,
     handler: async (
         runtime: IAgentRuntime,
         message: Memory,
@@ -20,7 +21,7 @@ export const getLatestBlockHeightAction: Action = {
     ) => {
     
         const config = await validateOrderbookConfig(runtime);
-        const service = createOrderbookService(config.UNICHAIN_RPC_URL);
+        const service = createOrderbookService(config.UNICHAIN_RPC_URL, config.ORDERBOOK_TASKMANAGER_ADDR);
        
         try {
             const response = await service.getLastBlockHeight();
