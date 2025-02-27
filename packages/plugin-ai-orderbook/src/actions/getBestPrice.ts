@@ -30,7 +30,7 @@ export const getBestPriceAction: Action = {
             if (callback) {
                 
                 callback({
-                    text: `Here are all of the orders that have occurred:\n
+                    text: `Here are the most recent 'best' prices:\n
                     
                     Token A: ${response[0].tokenAddr}\n
                     What 1 token B might get you: ${response[0].ratio}
