@@ -3,6 +3,7 @@ import { z } from "zod";
 
 export const orderbookEnvSchema = z.object({
     UNICHAIN_RPC_URL: z.string().min(1, "Unichain RPC url is required"),
+    ORDERBOOK_TASKMANAGER_ADDR: z.string().min(1, "Address of OrderBookTaskManager is required"),
 });
 
 export type orderbookConfig = z.infer<typeof orderbookEnvSchema>;
@@ -13,6 +14,7 @@ export async function validateOrderbookConfig(
     try {
         const config = {
             UNICHAIN_RPC_URL: runtime.getSetting("UNICHAIN_RPC_URL"),
+            ORDERBOOK_TASKMANAGER_ADDR: runtime.getSetting("ORDERBOOK_TASKMANAGER_ADDR")
         };
         console.log('config: ', config)
         return orderbookEnvSchema.parse(config);
