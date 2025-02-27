@@ -17,6 +17,11 @@ export enum OrderIndexes {
     Fulfilled
 }
 
+export interface OrderAvgResponse {
+    tokenAddr: string,
+    avg: Number
+}
+
 export interface MinRatioTradeResponse {
     tokenAddr: string,
     ratio: number

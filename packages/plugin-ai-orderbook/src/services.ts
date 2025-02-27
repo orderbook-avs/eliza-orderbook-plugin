@@ -2,7 +2,7 @@ import { LatestBlockHeightResponse, GetAllOrdersResponse } from "./types";
 import { ethers } from 'ethers';
 import OrderBookTaskManagerABI from './abis/OrderBookTaskManagerABI.json';
 
-import { OrderIndexes, Order, MinRatioTradeResponse } from "./types";
+import { OrderIndexes, Order, MinRatioTradeResponse, OrderAvgResponse } from "./types";
 
 export const createOrderbookService = (rpc_url: string, orderbook_taskmanager_addr: string, ) => {
 
@@ -26,7 +26,6 @@ export const createOrderbookService = (rpc_url: string, orderbook_taskmanager_ad
         let provider = new ethers.JsonRpcProvider(rpc_url)
         let contract = new ethers.Contract(orderbook_taskmanager_addr, OrderBookTaskManagerABI, provider)
         let result = contract.getAllOrders()
-        console.log(await result)
         return { orders: await result }
     }
 
@@ -53,12 +52,41 @@ export const createOrderbookService = (rpc_url: string, orderbook_taskmanager_ad
                 }
             }
         }
+        if (min === Number.MAX_VALUE) {
+            min = 0
+        }
         return { tokenAddr, ratio: min}
 
     }
 
+    async function getPairAvgs(): Promise<OrderAvgResponse[]> {
+        let orderResponse = await getAllOrders()
+        let orders = orderResponse.orders
+        let tokenA = orders[0][OrderIndexes.TokenAddressHeld]
+        let tokenARatioAvg = await getOrderAvg(orders, tokenA)
+        let tokenB = orders[0][OrderIndexes.TokenAddressToBuy]
+        let tokenBRatioAvg = await getOrderAvg(orders, tokenB)
+        
+        return [tokenARatioAvg, tokenBRatioAvg];
+    }
+
+    async function getOrderAvg(orders: Order[], tokenAddr: string): Promise<OrderAvgResponse> {
+        let sum = Number(0)
+        //review the last five orders and determine the lowest priced trade
+        let num_iters = Math.min(orders.length, 5)
+        for (let i = 0; i < num_iters; i++) {
+            if (orders[i][OrderIndexes.TokenAddressHeld] !== tokenAddr && orders[i][OrderIndexes.Fulfilled] === "true") {
+                let ratio = Number(orders[i][OrderIndexes.AmountOwned])/Number(orders[i][OrderIndexes.AmountToBuy])
+                sum += ratio
+            }
+        }
+        let avg = Number(sum)/Number(num_iters)
+        return { tokenAddr, avg }
+
+    }
+
     return {
-        getLastBlockHeight, getAllOrders, getBestPrice
+        getLastBlockHeight, getAllOrders, getBestPrice, getPairAvgs
     };
 }
 
