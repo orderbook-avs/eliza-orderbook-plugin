@@ -30,7 +30,7 @@ export const getAllOrdersAction: Action = {
                 `Successfully fetched all orders: ${response.orders}`
             );
             if (callback) {
-                const indexToName = ["User", "Price", "Amount", "Token Address", "Slippage", "Is a buy order (if false, a sell order)", "When order was placed (unix seconds)", "When order was matched (unix seconds)", "Is partially fulfilled", "Is fulfilled"]; // Example mapping
+                const indexToName = ["User", "Amount of token owned", "Amount of token to buy", "Token Address of Coin to Buy", "Token Address of Coins Held", "Slippage", "When order was placed (unix seconds)", "When order was matched (unix seconds)", "Is partially fulfilled", "Is fulfilled"]; // Example mapping
                 const prettyOrders = response.orders.map((order: Order) => 
                     order.map((value: string | number | bigint, index: number) => `${indexToName[index]}: ${typeof value === 'bigint' ? value.toString() : value}`).join('\n')
                 ).join('\n---------------------------------------\n');

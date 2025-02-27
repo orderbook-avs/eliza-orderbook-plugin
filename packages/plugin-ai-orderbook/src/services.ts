@@ -28,6 +28,15 @@ export const createOrderbookService = (rpc_url: string, orderbook_taskmanager_ad
         return { orders: await result }
     }
 
+    async function getBestPrice() {
+        let orderResponse = await getAllOrders()
+        let orders = orderResponse.orders
+        let min = Number.MAX_VALUE
+        for (let i = 0; i < Math.min(orders.length, 5); i++) {
+            if (orders[i][] && orders[i][])
+        }
+    }
+
     return {
         getLastBlockHeight, getAllOrders
     };
