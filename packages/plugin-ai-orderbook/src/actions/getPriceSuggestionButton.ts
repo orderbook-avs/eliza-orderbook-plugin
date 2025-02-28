@@ -30,7 +30,7 @@ export const getPriceSuggestionButtonAction: Action = {
             if (callback) {
                 
                 callback({
-                    text: `{ "ratio": ${response[0].ratio}, "tokenAddr": ${response[0].tokenAddr}, "tokenAddr2": ${response[1].tokenAddr}, "ratio2": ${response[1].ratio} }`
+                    text: JSON.stringify({ ratio: response[0].ratio, tokenAddr: response[0].tokenAddr, tokenAddr2: response[1].tokenAddr, ratio2: response[1].ratio }),
                 });
                 return true;
             }
