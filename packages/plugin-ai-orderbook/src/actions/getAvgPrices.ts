@@ -29,15 +29,7 @@ export const getAvgPriceAction: Action = {
             if (callback) {
                 
                 callback({
-                    text: `Here are the averages of the price of the tokens:\n
-                    
-                    Token A: ${response[0].tokenAddr}\n
-                    What 1 token B might get you: ${response[0].avg}
-                    \n\n
-                    Token B: ${response[1].tokenAddr}\n
-                    What 1 token A might get you: ${response[1].avg}
-                    
-                    \n`
+                    text: `Here are the averages of the price of the tokens:\nToken A: ${response[0].tokenAddr}\nWhat 1 token B might get you: ${response[0].avg}\n\nToken B: ${response[1].tokenAddr}\nWhat 1 token A might get you: ${response[1].avg}\n`
                 });
                 return true;
             }
