@@ -3,11 +3,12 @@ import { getLatestBlockHeightAction } from "./actions/getLatestBlockHeight";
 import { getAllOrdersAction } from "./actions/getAllOrders";
 import { getBestPriceAction } from "./actions/getBestPrice";
 import { getAvgPriceAction } from "./actions/getAvgPrices";
+import { getPriceSuggestionButtonAction } from "./actions/getPriceSuggestionButton";
 
 export const orderbookPlugin: Plugin = {
     name: "ai-orderbook",
     description: "Plugin to interact with custom Uniswap-based orderbook",
-    actions: [getLatestBlockHeightAction, getAllOrdersAction, getBestPriceAction, getAvgPriceAction],
+    actions: [getLatestBlockHeightAction, getAllOrdersAction, getBestPriceAction, getAvgPriceAction, getPriceSuggestionButtonAction],
     // evaluators analyze the situations and actions taken by the agent. they run after each agent action
     // allowing the agent to reflect on what happened and potentially trigger additional actions or modifications
     evaluators: [],
