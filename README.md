@@ -3,6 +3,11 @@ Special thank you to Nader for his amazing [plugin tutorial](https://www.youtube
 
 To learn more about Eliza (AI Agent Framework), visit the [official github](https://github.com/elizaos/eliza)
 
+## Autonome
+
+Our project name: `order-ai-dtkbzo`
+Our Autonome url: `https://autonome.alt.technology/order-ai-dtkbzo`
+
 ## Custom Plugin
 
 You can find the custom orderbook plugin created for the project under /packages/plugin-ai-orderbook
