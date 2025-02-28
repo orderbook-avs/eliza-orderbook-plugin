@@ -1,13 +1,17 @@
 # Eliza Fork Containing Custom Plugin
-## Special thank you to Nader for his amazing [plugin tutorial](https://www.youtube.com/watch?v=25FxjscBHuo)
+Special thank you to Nader for his amazing [plugin tutorial](https://www.youtube.com/watch?v=25FxjscBHuo)
 
 To learn more about Eliza (AI Agent Framework), visit the [official github](https://github.com/elizaos/eliza)
+
+## Custom Plugin
 
 You can find the custom orderbook plugin created for the project under /packages/plugin-ai-orderbook
 
 There are four different actions created for the AI agent in the plugin: getAllOrders, getAvgPrice, getBestPrice, getPriceSuggestionButton (for frontend), and getLatestBlockHeight (for testing).
 
-To install this repository, please clone it, run `pnpm install` and `pnpm build`, .
+## Using this Eliza fork
+
+To use this fork of Eliza, please clone it, run `pnpm install` and `pnpm build`, .
 
 Our setup used a Gaia local node to host our AI, as well as other custom environment variables. We used the Gaia node's url in the OpenAI environment variables, as Gaia's API is nearly the same as OpenAI's API. Our environment configuration involved setting the variables below to make this work:
 
